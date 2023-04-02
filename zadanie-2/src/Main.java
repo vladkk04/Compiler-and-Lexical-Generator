@@ -1,13 +1,16 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.StringReader;
 
 public class Main {
 
     public static void main(String[] args)
     {
-        try
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)))
         {
-            Scanner input = new Scanner(System.in);
-            Lexer lexer = new Lexer(input.nextLine());
+            System.out.println("Enter an arithmetic expression:");
+            String input = reader.readLine();
+            Lexer lexer = new Lexer(new StringReader(input));
             int result = new Parser(lexer).statement();
 
             System.out.printf("\nResult: %d\n", result);
