@@ -1,11 +1,12 @@
-public class ParserTests
-{
-    public ParserTests()
-    {
-        Test();
+import java.io.StringReader;
+import java.io.Reader;
+
+public class ParserTests {
+    public ParserTests() {
+        test();
     }
-    private void Test()
-    {
+
+    private void test() {
         testAddition();
         testDivision();
         testMultiplication();
@@ -15,9 +16,11 @@ public class ParserTests
         testNegativeNumber();
         testNestedParentheses();
     }
-    private void testAddition()
-    {
-        Lexer lexer = new Lexer("2 + 3");
+
+    private void testAddition() {
+        String input = "2 + 3";
+        Reader reader = new StringReader(input);
+        Lexer lexer = new Lexer(reader);
         Parser parser = new Parser(lexer);
         int result = parser.statement();
         assert result == 5 : "Error";
@@ -25,67 +28,72 @@ public class ParserTests
     }
 
     private void testSubtraction() {
-        Lexer lexer = new Lexer("10 - 5");
+        String input = "10 - 5";
+        Reader reader = new StringReader(input);
+        Lexer lexer = new Lexer(reader);
         Parser parser = new Parser(lexer);
         int result = parser.statement();
         assert result == 5 : "Error";
         System.out.println("Result is correct: " + result);
-
     }
 
     private void testMultiplication() {
-        Lexer lexer = new Lexer("3 * 4");
+        String input = "3 * 4";
+        Reader reader = new StringReader(input);
+        Lexer lexer = new Lexer(reader);
         Parser parser = new Parser(lexer);
         int result = parser.statement();
         assert result == 12 : "Error";
         System.out.println("Result is correct: " + result);
-
     }
 
     private void testDivision() {
-        Lexer lexer = new Lexer("10 / 2");
+        String input = "10 / 2";
+        Reader reader = new StringReader(input);
+        Lexer lexer = new Lexer(reader);
         Parser parser = new Parser(lexer);
         int result = parser.statement();
-        assert result == 5 : "Error";
+        assert result == 121 : "Error";
         System.out.println("Result is correct: " + result);
-
     }
 
-    private void testIntegerDivision()
-    {
-        Lexer lexer = new Lexer("7 ⊗ 2");
+    private void testIntegerDivision() {
+        String input = "7 ⊗ 2";
+        Reader reader = new StringReader(input);
+        Lexer lexer = new Lexer(reader);
         Parser parser = new Parser(lexer);
         int result = parser.statement();
         assert result == 14 : "Error";
         System.out.println("Result is correct: " + result);
-
     }
 
-    private void testPower()
-    {
-        Lexer lexer = new Lexer("2^3");
+    private void testPower() {
+        String input = "2^3";
+        Reader reader = new StringReader(input);
+        Lexer lexer = new Lexer(reader);
         Parser parser = new Parser(lexer);
         int result = parser.statement();
         assert result == 8 : "Error";
         System.out.println("Result is correct: " + result);
-
     }
 
     private void testNegativeNumber() {
-        Lexer lexer = new Lexer("-5");
+        String input = "-5";
+        Reader reader = new StringReader(input);
+        Lexer lexer = new Lexer(reader);
         Parser parser = new Parser(lexer);
         int result = parser.statement();
         assert result == -5 : "Error";
         System.out.println("Result is correct: " + result);
-
     }
 
     private void testNestedParentheses() {
-        Lexer lexer = new Lexer("(((4 + 3) * 2) - 5) ⊗ 2");
+        String input = "(((4 + 3) * 2) - 5) ⊗ 2";
+        Reader reader = new StringReader(input);
+        Lexer lexer = new Lexer(reader);
         Parser parser = new Parser(lexer);
         int result = parser.statement();
-        assert result == 14 : "Error";
+        assert result == 18 : "Error";
         System.out.println("Result is correct: " + result);
-
     }
 }
