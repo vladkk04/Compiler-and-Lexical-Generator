@@ -1,0 +1,10 @@
+package fei.tuke.sk.stmlang;
+
+public enum TokenType
+{
+    EVENTS, RESET_COMMANDS, COMMANDS, STATE, ACTIONS,
+    LBRACE, RBRACE, ARROW,
+    NAME, CHAR,
+    EOF,
+    COMMA, SEMICOLON, EQUAL, LPAREN, RPAREN, COLON, STRING, WHITESPACE, QUOTES
+}
